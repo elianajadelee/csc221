@@ -3,18 +3,34 @@ from gasp import*
 begin_graphics()
 finished = False 
 
-c = Circle((320, 200), 5)
-move_to(c, (300, 220))
+from random import randint
+player_x = randint(0,63)
+player_y = randint(0,47)
+robot_x = randint(0, 63)
+robot_y = randint(0, 47)
 
-def place_player():
-    print("Here I am!")
+c = Circle((10 * robot_x +5 , 10 * robot_y + 5), 5)
+move_to(c, (300, 220))
 
 def move_player():
     print("I'm moving...")
 
-from random import randint
-player_x = randint(0,63)
-player_y = randint(0,47)
+def place_player():
+    global c
+    c = Circle((10 * player_x + 5 , 10 * player_y + 5), 5, filled = True)
+
+def move_robot():
+    global robot_x, robot_y, b
+    print('robot move')
+    if robot_y > player_y:
+        robot_y -= 1
+    if robot_y < player_y:
+        robot_y +=1
+    if robot_x > player_x:
+        robot_x -= 1
+    if robot_x < player_x:
+        robot_x += 1
+        move_to(c, (10 * robot_x, 10 * robot_y))
 
 while True: 
    
@@ -37,5 +53,10 @@ while True:
 
 move_to(Circle, (10 * player_x + 5, 10 * player_y + 5))
 
+place_player()
+while not finished:
+    move_player()
+    move_robot()
 update_when('key_pressed')
 end_graphics()
+
