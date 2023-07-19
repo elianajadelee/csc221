@@ -55,7 +55,7 @@ def check_collisions():
     global finished 
     
     if player_x == robot_x and player_y == robot_y:
-        Text("GAME OVER!", (50, 50), size=50)
+        Text("GAME OVER!", (315, 250), size=50, color = color.LIGHTBLUE)
     finished = True
 
 begin_graphics()
@@ -66,6 +66,9 @@ robot = place_robot()
 while not finished:
     move_player()
     move_robot()
+
 while finished:
     check_collisions()
+
+
 end_graphics()
