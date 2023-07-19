@@ -15,7 +15,7 @@ def place_robot():
     
     robot_x = randint(0, 63)
     robot_y = randint(0, 47)
-    robot_shape = Circle((10 * robot_x +5 , 10 * robot_y + 5), 5)
+    robot_shape = Circle((10 * robot_x + 5 , 10 * robot_y + 5), 5)
 
 
 def move_player():
@@ -49,16 +49,14 @@ def move_robot():
     if robot_x < player_x:
         robot_x += 1
 
-move_to(robot_shape, (10 * player_x + 5, 10 * player_y + 5))
-
+    move_to(robot_shape, (10 * robot_x, 10 * robot_y))
 
 
 begin_graphics()
 finished = False 
 player = place_player()
-
+robot = place_robot()
 while not finished:
     move_player()
-    #move_robot()
-
+    move_robot()
 end_graphics()
