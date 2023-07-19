@@ -32,6 +32,10 @@ def move_robot():
         robot_x += 1
         move_to(c, (10 * robot_x, 10 * robot_y))
 
+def place_robot():
+    global c
+    c = Circle((10 * robot_x +5 , 10 * robot_y + 5), 5)
+
 while True: 
    
     player = Circle((10 * player_x + 5, 10 * player_y + 5), 5, filled=True)
