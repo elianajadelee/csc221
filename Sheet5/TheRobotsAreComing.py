@@ -51,12 +51,21 @@ def move_robot():
 
     move_to(robot_shape, (10 * robot_x, 10 * robot_y))
 
+def check_collisions():
+    global finished 
+    
+    if player_x == robot_x and player_y == robot_y:
+        Text("GAME OVER!", (50, 50), size=50)
+    finished = True
 
 begin_graphics()
 finished = False 
 player = place_player()
 robot = place_robot()
+
 while not finished:
     move_player()
     move_robot()
+while finished:
+    check_collisions()
 end_graphics()
