@@ -1,49 +1,28 @@
-from gasp import*
-
-begin_graphics()
-finished = False 
-
+from gasp import *
 from random import randint
-player_x = randint(0,63)
-player_y = randint(0,47)
-robot_x = randint(0, 63)
-robot_y = randint(0, 47)
 
-c = Circle((10 * robot_x +5 , 10 * robot_y + 5), 5)
-move_to(c, (300, 220))
-
-def move_player():
-    print("I'm moving...")
 
 def place_player():
-    global c
-    c = Circle((10 * player_x + 5 , 10 * player_y + 5), 5, filled = True)
+    global player_x, player_y, player_shape
 
-def move_robot():
-    global robot_x, robot_y, b
-    print('robot move')
-    if robot_y > player_y:
-        robot_y -= 1
-    if robot_y < player_y:
-        robot_y +=1
-    if robot_x > player_x:
-        robot_x -= 1
-    if robot_x < player_x:
-        robot_x += 1
-        move_to(c, (10 * robot_x, 10 * robot_y))
+    player_x = randint(0, 63)
+    player_y = randint(0, 47)
+    player_shape = Circle((10 * player_x + 5 , 10 * player_y + 5), 5, filled=True)
+
 
 def place_robot():
-    global c
-    c = Circle((10 * robot_x +5 , 10 * robot_y + 5), 5)
+    global robot_shape, robot_x, robot_y
+    
+    robot_x = randint(0, 63)
+    robot_y = randint(0, 47)
+    robot_shape = Circle((10 * robot_x +5 , 10 * robot_y + 5), 5)
 
-while True: 
-   
-    player = Circle((10 * player_x + 5, 10 * player_y + 5), 5, filled=True)
+
+def move_player():
+    global player_x, player_y, player_shape, finished
     
     key = update_when('key_pressed')
    
-    remove_from_screen(player)
-    
     if key == 'Right':
         player_x += 1
     if key == 'Left':
@@ -53,14 +32,33 @@ while True:
     if key == 'Down': 
         player_y -= 1
     if key == 'q':
-        break
+        finished = True
+        
+    move_to(player_shape, (10 * player_x + 5, 10 * player_y + 5))
 
-move_to(Circle, (10 * player_x + 5, 10 * player_y + 5))
 
-place_player()
+def move_robot():
+    global robot_shape, robot_x, robot_y, player_x, player_y
+    print('robot move')
+    if robot_y > player_y:
+        robot_y -= 1
+    if robot_y < player_y:
+        robot_y +=1
+    if robot_x > player_x:
+        robot_x -= 1
+    if robot_x < player_x:
+        robot_x += 1
+
+move_to(robot_shape, (10 * player_x + 5, 10 * player_y + 5))
+
+
+
+begin_graphics()
+finished = False 
+player = place_player()
+
 while not finished:
     move_player()
-    move_robot()
-update_when('key_pressed')
-end_graphics()
+    #move_robot()
 
+end_graphics()
