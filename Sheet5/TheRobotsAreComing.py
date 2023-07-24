@@ -31,7 +31,7 @@ def move_player():
         player_y += 1
     if key == 'Down': 
         player_y -= 1
-    if key == 'q':
+    if key == 'a':
         finished = True
         
     move_to(player_shape, (10 * player_x + 5, 10 * player_y + 5))
@@ -55,7 +55,7 @@ def check_collisions():
     global finished 
     
     if player_x == robot_x and player_y == robot_y:
-        Text("GAME OVER!", (315, 250), size=50, color = color.LIGHTBLUE)
+        Text("GAME OVER!", (315, 250), size=50, color = color.RED)
     finished = True
 
 begin_graphics()
