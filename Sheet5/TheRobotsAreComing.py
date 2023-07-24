@@ -66,8 +66,6 @@ robot = place_robot()
 while not finished:
     move_player()
     move_robot()
-
-while finished:
     check_collisions()
 
 
