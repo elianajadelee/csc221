@@ -1,6 +1,10 @@
 from gasp import *
 from random import randint
 
+class Player:
+    pass
+class Robot:
+    pass
 
 def place_player():
     global player_x, player_y, player_shape
@@ -32,10 +36,15 @@ def move_player():
     if key == 'Down': 
         player_y -= 1
     if key == 'a':
-        finished = True
-        
-    move_to(player_shape, (10 * player_x + 5, 10 * player_y + 5))
+        finished = True 
+    
+    
 
+    move_to(player_shape, (10 * player_x + 5, 10 * player_y + 5))
+    if key == 't':
+     remove_from_screen(player_shape)
+     safely_place_player()
+     key = update_when('key_pressed')
 
 def move_robot():
     global robot_shape, robot_x, robot_y, player_x, player_y
@@ -53,20 +62,38 @@ def move_robot():
 
 def check_collisions():
     global finished 
-    
+   
     if player_x == robot_x and player_y == robot_y:
         Text("GAME OVER!", (315, 250), size=50, color = color.RED)
-    finished = True
+    
+
+def safely_place_player():
+     place_player()
+     while player_x == robot_x and player_y == robot_y:
+      place_player() 
+
+     
+
+
+
 
 begin_graphics()
 finished = False 
 player = place_player()
 robot = place_robot()
 
+
+
+
+
+
+
 while not finished:
     move_player()
     move_robot()
     check_collisions()
 
+    
+    
 
 end_graphics()
