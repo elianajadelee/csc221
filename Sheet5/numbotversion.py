@@ -14,13 +14,18 @@ def place_player():
     player_shape = Circle((10 * player_x + 5 , 10 * player_y + 5), 5, filled=True)
 
 
-def place_robot():
+def place_robots():
     global robot_shape, robot_x, robot_y
     
-    robot_x = randint(0, 63)
-    robot_y = randint(0, 47)
-    robot_shape = Circle((10 * robot_x + 5 , 10 * robot_y + 5), 5)
+    robots = []
+    while len(robots) < numbots:
 
+        for i in range(numbots):
+           
+            robot_x = randint(0, 63)
+            robot_y = randint(0, 47)
+            robot_shape = Circle((10 * robot_x + 5 , 10 * robot_y + 5), 5)
+            robots.append(robots)
 
 def move_player():
     global player_x, player_y, player_shape, finished
@@ -72,15 +77,17 @@ def safely_place_player():
      while player_x == robot_x and player_y == robot_y:
       place_player() 
 
-     
+      
 
 
 
 
 begin_graphics()
 finished = False 
+numbots = 100
+robots = []
 player = place_player()
-robot = place_robot()
+robot = place_robots()
 
 
 
