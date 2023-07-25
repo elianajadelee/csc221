@@ -11,7 +11,7 @@ def place_player():
 
     player_x = randint(0, 63)
     player_y = randint(0, 47)
-    player_shape = Circle((10 * player_x + 5 , 10 * player_y + 5), 5, filled=True)
+    player_shape = Circle((10 * player_x + 5 , 10 * player_y + 5), 5, filled=True, color=color.PINK)
 
 
 def place_robots():
@@ -19,7 +19,7 @@ def place_robots():
     
     robot_x = randint(0, 63)
     robot_y = randint(0, 47)
-    robot_shape = Circle((10 * robot_x + 5 , 10 * robot_y + 5), 5)
+    robot_shape = Circle((10 * robot_x + 5 , 10 * robot_y + 5), 5, filled=True, color=color.LIGHTCORAL)
 
 
 def move_player():
